@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
      height: 1000px;
-     background-image: url(calculatorbackgroundimage41.jpg);
+     background-image: URL("images/calculatorbackgroundimage41.jpg");
 
 .d{
     height: 600px;
