@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" type="text/css" href="calclulator.css">
+    </head>
+    <body>
+    <div class="d" >
+    <input style="font-size: 40px;" type="text" id="display" readonly>
+
+
+    <table class="tab">
+        <tr>
+     <td><button class="but" onclick="calculatePower()">xⁿ</button></td>  
+     <td>   <button class="but" onclick="calculateLog()">log()</button></td>  
+     <td>  <button class="but" onclick="calculateLn()">ln()</button></td>  
+     <td>   <button class="but" onclick="appendToDisplay('(')">(</button></td>  
+     <td>  <button class="but" onclick="appendToDisplay(')')">)</button></td>  
+        </tr>
+   <tr>
+    <td>  <button class="but" onclick="calculateSqrt()">√</button> </td>  
+    <td> <button class="but"  style="background-color: lightcoral;" onclick="clearDisplay()">C</button></td>  
+    <td>  <button class="but"  style="background-color: lightcoral;" onclick="deletelast()">del</button></td>  
+    <td><button class="but" onclick="calculatePercentage()">%</button></td>  
+    <td> <button class="but"  onclick="appendToDisplay('/')">/</button></td>  
+    </tr>
+    <tr>
+    <td><button class="but"  onclick="calculateFactorial()">!</button></td>  
+    <td><button class="but"  onclick="appendToDisplay('7')">7</button></td>  
+    <td> <button class="but" onclick="appendToDisplay('8')">8</button></td>  
+    <td><button class="but" onclick="appendToDisplay('9')">9</button></td>  
+    <td>    <button class="but" onclick="appendToDisplay('*')">*</button></td>  
+    </tr>
+    <tr>
+    <td> <button class="but" onclick="calculateReciprocal()">1/x</button></td>  
+    <td><button class="but" onclick="appendToDisplay('4')">4</button></td>  
+    <td><button class="but" onclick="appendToDisplay('5')">5</button></td>  
+    <td> <button class="but" onclick="appendToDisplay('6')">6</button></td>  
+    <td> <button class="but" onclick="appendToDisplay('-')">-</button></td>  
+    </tr>
+    <tr>
+    <td> <button class="but" onclick="calculatePi()">π</button></td>  
+    <td><button class="but" onclick="appendToDisplay('1')">1</button></td>  
+    <td> <button class="but" onclick="appendToDisplay('2')">2</button></td>  
+    <td> <button class="but" onclick="appendToDisplay('3')">3</button></td>  
+    <td><button class="but" onclick="appendToDisplay('+')">+</button></td>  
+    </tr>
+    <tr>
+        <td><button class="but" onclick="calculateSquare()">x²</button></td>  
+        <td> <button class="but" onclick="appendToDisplay('.')">.</button></td>  
+        <td><button class="but" onclick="appendToDisplay('0')">0</button></td>  
+        <td colspan="2"> <button  style="width: 140px; background-color:lightgreen;" onclick="calculateResult()">=</button></td>  
+    </tr>
+</table>
+
+    </div>
+
+    <script>
+        let currentInput = '';
+
+        function appendToDisplay(value) {
+            currentInput += value;
+            document.getElementById('display').value = currentInput;
+        }
+
+        function clearDisplay() {
+            currentInput = '';
+            document.getElementById('display').value = '';
+        }
+
+        function calculateResult() {
+            try {
+                currentInput = eval(currentInput);
+                document.getElementById('display').value = currentInput;
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
+                currentInput = '';
+            }
+        }
+        function deletelast() {
+            currentInput = currentInput.slice(0, -1);
+            document.getElementById('display').value = currentInput;
+        }
+ 
+        
+        function calculateReciprocal() {
+            currentInput = 1 / eval(currentInput);
+            document.getElementById('display').value = currentInput;
+        }
+
+        function calculateSqrt() {
+            currentInput = Math.sqrt(eval(currentInput));
+            document.getElementById('display').value = currentInput;
+        }
+
+        function calculateSquare() {
+            currentInput = Math.pow(eval(currentInput), 2);
+            document.getElementById('display').value = currentInput;
+        }
+
+        function calculatePower() {
+            currentInput = Math.pow(eval(currentInput), prompt('Enter the power:'));
+            document.getElementById('display').value = currentInput;
+        }
+        function calculateLog() {
+        currentInput = Math.log10(eval(currentInput));
+        document.getElementById('display').value = currentInput;
+    }
+
+    function calculateLn() {
+        currentInput = Math.log(eval(currentInput));
+        document.getElementById('display').value = currentInput;
+    }
+
+
+    function calculateFactorial() {
+        let num = eval(currentInput);
+        let result = 1;
+        for (let i = 2; i <= num; i++) {
+            result *= i;
+        }
+        currentInput = result;
+        document.getElementById('display').value = currentInput;
+    }
+    function calculatePi() {
+        currentInput += Math.PI;
+        document.getElementById('display').value = currentInput;
+    }
+    function calculatePercentage() {
+        currentInput = eval(currentInput) / 100;
+        document.getElementById('display').value = currentInput;
+    }
+    </script>
+</body>
+</html>
